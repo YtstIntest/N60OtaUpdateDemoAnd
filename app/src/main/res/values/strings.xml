@@ -1,0 +1,15 @@
+<resources>
+    <string name="upgrade_tasks">有升级任务</string>
+    <string name="user_download">用户确认下载升级文件，需弹出消息界面</string>
+    <string name="user_agree">用户同意下载</string>
+    <string name="user_no_agree">用户不同意下载</string>
+    <string name="download_file">下载文件中</string>
+    <string name="download_success">下载文件成功</string>
+    <string name="download_erro">下载文件失败</string>
+    <string name="user_update">用户确认开始升级</string>
+    <string name="user_agree_update">用户同意升级</string>
+    <string name="user_no_agree_update">用户不同意</string>
+    <string name="updateing">升级中</string>
+    <string name="update_ending">升级结束</string>
+    <string name="app_name">AndroidOtaDemo</string>
+</resources>

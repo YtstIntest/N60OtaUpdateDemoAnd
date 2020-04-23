@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.example.n60otaupdatedemoand"
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    }
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //广告轮播banner
+    implementation 'com.youth.banner:banner:1.4.10'
+    // glide图片加载库
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    //glide的网路请求插件
+    implementation 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+
+    //绑定注解，专业解决各种findViewById 此库必须写到app的bulider.gradle里,不然无效
+    implementation 'com.jakewharton:butterknife:10.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
+    implementation 'com.github.YtstIntest:CommonLibrary:1.0.3'
+    implementation 'com.ashokvarma.android:bottom-navigation-bar:2.0.5'
+
+    //帮助工具类
+    implementation 'com.blankj:utilcode:1.9.12'
+    //json解析
+    implementation 'com.google.code.gson:gson:2.8.2'
+    //网络请求
+    implementation 'com.lzy.net:okgo:3.0.4'
+    //图片缩放 沉浸式状态栏
+    implementation 'com.github.chrisbanes:PhotoView:2.1.3'
+    //列表适配器
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
+
+    //照片选择 仿微信
+    implementation('com.lzy.widget:imagepicker:0.6.1') {
+        //exclude module: 'PhotoView'//移除重复的photoview包
+        exclude group: 'com.github.chrisbanes.photoview', module: 'library'
+    }
+
+    implementation 'com.github.YtstIntest:N60RemoteUpgrade:1.0.0'
+
+}

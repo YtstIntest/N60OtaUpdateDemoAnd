@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="setting">#88556677</color>
+    <color name="setting_down">#99556677</color>
+    <color name="blue">#1296db</color>
+    <color name="one">#8843a4ff</color>
+    <color name="one_down">#9943a4ff</color>
+    <color name="two">#88f44236</color>
+    <color name="two_down">#99f44236</color>
+    <color name="three">#88d35c05</color>
+    <color name="three_down">#99d35c05</color>
+    <color name="four">#885ad86a</color>
+    <color name="four_down">#995ad86a</color>
+</resources>
