@@ -26,10 +26,13 @@ import com.example.remoteupgradesdk.bean.WebStateBean;
 import com.example.remoteupgradesdk.interfaces.ResponseCallback;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class UpdateMessageActivity extends BaseAppActivity implements View.OnClickListener {
+
+    CurrentVehicleTaskResBean.ResultBean currentVehicleTaskResBean;
+    WebStateBean.ResultBean webStateBean;
+    SharedPreferences sharedPreferences;
     @BindView(R.id.tasekId)
     TextView tasekId;
     @BindView(R.id.taskType)
@@ -46,25 +49,21 @@ public class UpdateMessageActivity extends BaseAppActivity implements View.OnCli
     TextView starTV;
     @BindView(R.id.desTV)
     TextView desTV;
-    @BindView(R.id.startBtn)
-    Button startBtn;
     @BindView(R.id.progress)
     ProgressBar progress;
     @BindView(R.id.progressTV)
     TextView progressTV;
     @BindView(R.id.line1)
     LinearLayout line1;
-
-    CurrentVehicleTaskResBean.ResultBean currentVehicleTaskResBean;
-    WebStateBean.ResultBean webStateBean;
-    SharedPreferences sharedPreferences;
+    @BindView(R.id.startBtn)
+    Button startBtn;
 
 
     private boolean isbool = false;
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            JApp.remoteUpdateManage.queryState(sharedPreferences.getString("vin","18888888888888886"), JApp.taskId, JApp.uDate, new ResponseCallback<WebStateBean>() {
+            JApp.remoteUpdateManage.queryState(sharedPreferences.getString("vin", "LBQTEST2019012593"), JApp.taskId, JApp.uDate, new ResponseCallback<WebStateBean>() {
                 @Override
                 public void onSuccess(WebStateBean bean) {
                     webStateBean = bean.getResult();
@@ -104,7 +103,7 @@ public class UpdateMessageActivity extends BaseAppActivity implements View.OnCli
                                 ProgressDialogView.dismiss();
                                 line1.setVisibility(View.VISIBLE);
                                 stateTv.setText(R.string.updateing);
-                                JApp.remoteUpdateManage.queryUpdateProgress(sharedPreferences.getString("vin","18888888888888886"), JApp.taskId, JApp.uDate, new ResponseCallback<UpdateProgressBean>() {
+                                JApp.remoteUpdateManage.queryUpdateProgress(sharedPreferences.getString("vin", "LBQTEST2019012593"), JApp.taskId, JApp.uDate, new ResponseCallback<UpdateProgressBean>() {
                                     @Override
                                     public void onSuccess(UpdateProgressBean bean) {
                                         progress.setProgress(bean.getResult().getProgress());
@@ -122,7 +121,7 @@ public class UpdateMessageActivity extends BaseAppActivity implements View.OnCli
                         case 11:
                             line1.setVisibility(View.GONE);
                             stateTv.setText(R.string.update_ending);
-                            JApp.remoteUpdateManage.queryUpdateResult(sharedPreferences.getString("vin","18888888888888886"), JApp.taskId, JApp.uDate, new ResponseCallback<UpdateResultBean>() {
+                            JApp.remoteUpdateManage.queryUpdateResult(sharedPreferences.getString("vin", "LBQTEST2019012593"), JApp.taskId, JApp.uDate, new ResponseCallback<UpdateResultBean>() {
                                 @Override
                                 public void onSuccess(UpdateResultBean bean) {
                                     switch (bean.getResult().getResult()) {
@@ -200,6 +199,7 @@ public class UpdateMessageActivity extends BaseAppActivity implements View.OnCli
             handler.postDelayed(runnable, 2000);
         }
     };
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_update_message;
@@ -209,8 +209,8 @@ public class UpdateMessageActivity extends BaseAppActivity implements View.OnCli
     protected void afterCreate(Bundle savedInstanceState) {
         setTitle("系统升级");
         setBackClick(this);
-        sharedPreferences= getSharedPreferences("data", Context.MODE_PRIVATE);
-        JApp.remoteUpdateManage.getCarUpdateTask(sharedPreferences.getString("vin","18888888888888886"), JApp.taskId, JApp.uDate, new ResponseCallback<CurrentVehicleTaskResBean>() {
+        sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
+        JApp.remoteUpdateManage.getCarUpdateTask(sharedPreferences.getString("vin", "LBQTEST2019012593"), JApp.taskId, JApp.uDate, new ResponseCallback<CurrentVehicleTaskResBean>() {
             @Override
             public void onSuccess(CurrentVehicleTaskResBean bean) {
                 currentVehicleTaskResBean = bean.getResult();
@@ -233,7 +233,7 @@ public class UpdateMessageActivity extends BaseAppActivity implements View.OnCli
     }
 
     private void showDialog(String msg) {
-        AlertDialogView.getInstance(getApplicationContext()).show("系统提示", msg, "确认", null, new ChooseOptionCallBack() {
+        AlertDialogView.getInstance(this).show("系统提示", msg, "确认", null, new ChooseOptionCallBack() {
             @Override
             public void chooseOption(int var1) {
                 switch (var1) {
@@ -268,7 +268,6 @@ public class UpdateMessageActivity extends BaseAppActivity implements View.OnCli
     }
 
 
-
     @OnClick(R.id.startBtn)
     public void onViewClicked() {
 
@@ -291,8 +290,9 @@ public class UpdateMessageActivity extends BaseAppActivity implements View.OnCli
                 }
             });
             ProgressDialogView.show(this, "系统提示", "车机准备中，请稍后。。。", false);
-        }else{
+        } else {
             ToastUtils.showShort("请确认车机当前状态后再点击！！！");
         }
     }
+
 }

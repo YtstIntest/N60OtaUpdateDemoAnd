@@ -21,6 +21,7 @@ import com.example.library.widget.ProgressDialogView;
 import com.example.n60otaupdatedemoand.App.JApp;
 import com.example.n60otaupdatedemoand.R;
 import com.example.n60otaupdatedemoand.Ui.Mine.Activity.HistoryActivity;
+import com.example.n60otaupdatedemoand.Ui.Mine.Activity.UpdateMessageActivity;
 import com.example.remoteupgradesdk.bean.VerIformationBean;
 import com.example.remoteupgradesdk.bean.WebStateBean;
 import com.example.remoteupgradesdk.interfaces.ResponseCallback;
@@ -56,7 +57,7 @@ public class SettingFragment extends BaseAppFragment {
         sharedPreferences= getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         ProgressDialogView.show(getContext(), "系统提示", "信息加载中。。。", false);
-        JApp.remoteUpdateManage.getVersionInformation(sharedPreferences.getString("vin","18888888888888886"), JApp.uDate, new ResponseCallback<VerIformationBean>() {
+        JApp.remoteUpdateManage.getVersionInformation(sharedPreferences.getString("vin","LBQTEST2019012593"), JApp.uDate, new ResponseCallback<VerIformationBean>() {
             @Override
             public void onSuccess(VerIformationBean bean) {
                 ProgressDialogView.dismiss();
@@ -80,7 +81,7 @@ public class SettingFragment extends BaseAppFragment {
         switch (view.getId()) {
             case R.id.updateBtn:
                 ProgressDialogView.show(getContext(), "系统提示", "升级资源检查中,请稍后...", false);
-                JApp.remoteUpdateManage.queryState(sharedPreferences.getString("vin","18888888888888886"), JApp.taskId, JApp.uDate, new ResponseCallback<WebStateBean>() {
+                JApp.remoteUpdateManage.queryState(sharedPreferences.getString("vin","LBQTEST2019012593"), JApp.taskId, JApp.uDate, new ResponseCallback<WebStateBean>() {
                     @Override
                     public void onSuccess(WebStateBean bean) {
                         if (bean.getResult().getStatus() == -1) {
@@ -88,7 +89,7 @@ public class SettingFragment extends BaseAppFragment {
                             ToastUtils.showShort("暂无更新");
                         } else {
                             ProgressDialogView.dismiss();
-//                            startActivity(new Intent(getActivity(), UpdateMessageActivity.class));
+                            startActivity(new Intent(getActivity(), UpdateMessageActivity.class));
                         }
 
                     }

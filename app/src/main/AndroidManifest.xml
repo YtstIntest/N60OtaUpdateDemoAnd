@@ -46,6 +46,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Ui.Mine.Activity.HistoryActivity"></activity>
+        <activity android:name=".Ui.Mine.Activity.UpdateMessageActivity"></activity>
     </application>
 
 </manifest>

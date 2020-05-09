@@ -23,7 +23,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class HistoryActivity extends BaseAppActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
     @BindView(R.id.rv)
@@ -87,7 +86,7 @@ public class HistoryActivity extends BaseAppActivity implements SwipeRefreshLayo
     }
     private void getHistoryMessage(final int page) {
         setRefreshing(false);
-        JApp.remoteUpdateManage.getHistoryUpdate(sharedPreferences.getString("vin","18888888888888886"), page, 10, JApp.uDate, new ResponseCallback<UpdateVehicleTasksResBean>() {
+        JApp.remoteUpdateManage.getHistoryUpdate(sharedPreferences.getString("vin","LBQTEST2019012593"), page, 10, JApp.uDate, new ResponseCallback<UpdateVehicleTasksResBean>() {
             @Override
             public void onSuccess(UpdateVehicleTasksResBean bean) {
                 result = bean.getResult();

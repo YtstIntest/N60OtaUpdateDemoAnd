@@ -61,6 +61,6 @@ dependencies {
         exclude group: 'com.github.chrisbanes.photoview', module: 'library'
     }
 
-    implementation 'com.github.YtstIntest:N60RemoteUpgrade:1.0.0'
+    implementation 'com.github.YtstIntest:N60RemoteUpgrade:1.0.2'
 
 }
